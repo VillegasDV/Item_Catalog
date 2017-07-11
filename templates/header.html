@@ -1,0 +1,36 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>      
+      <a class="navbar-brand" href="{{ url_for('showCatalog') }}">Catalog App</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      {%if 'username' in session %}
+        <p class="navbar-text navbar-right"">Logged in as {{ session['username'] }} via {{ session['provider'] }}</p>
+      {% endif %}    
+      <ul class="nav navbar-nav navbar-right">
+        {%if 'username' not in session %}
+          <li>
+            <a href="{{url_for('showLogin')}}" id="signinButton">Login</a>
+          </li>
+        {% else %}
+          {% if session.user_id %}
+            {%if 'username' not in session %}
+            <li>
+              <a href="{{url_for('showLogin')}}">Click Here to Login </a>
+            {% else %}
+            <li>
+              <a href="{{url_for('disconnect')}}">Logout </a>
+            {% endif %}
+            </li>
+          {% endif %}
+        {% endif %} 
+      </ul>
+    </div>
+  </div>
+</nav>

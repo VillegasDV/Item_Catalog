@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "flash_alert.html" %}
+{% include "categories.html" %}
+<div class="col-md-9" id="category_items_pane_right">
+	<h2>Latest Items</h2>
+	<p>
+		<a href = "{{ url_for('newItem') }}" class="btn btn-primary btn-xs">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+			Add Item
+		</a>
+	</p>
+	{% include "category_item_list.html" %}
+</div>
+{% endblock %}

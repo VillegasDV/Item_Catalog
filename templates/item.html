@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "flash_alert.html" %}
+<div class="row">
+	<div class="col-md-12">
+		<h2>
+			{{item.name}}
+			<small>
+				(<a href="{{ url_for('showCategoryItems', category_name=item.category.name) }}" class="list_item">{{ item.category.name }}</a>)
+			</small>
+		</h2>
+		<p><strong>Description: </strong> {{ item.description }}</p>
+		<p><strong>Price:</strong> ${{ item.price }}</p>
+		<p>
+			{% if item.user_id == session.user_id %}		
+	        <a href="{{ url_for('editItem', item_name=item.name) }}" class="btn btn-primary edit">
+				<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 
+				Edit
+			</a>
+	        <a href="{{ url_for('deleteItem', item_name=item.name) }}" class="btn btn-danger delete">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
+				Delete
+	        </a>
+	    	{% endif %}	
+	    	
+			<a href = "{{ request.referrer }}" class="btn btn-default">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true" class="btn btn-default"></span> 
+				Cancel
+			</a>
+		</p>
+	</div>
+</div>
+{% endblock %}

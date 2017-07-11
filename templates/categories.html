@@ -1,0 +1,41 @@
+<div class="col-md-3" id="category_pane_left">
+  <h2>Categories</h2>
+  {%if 'username' in session %}
+    <p>
+      <a href = "{{ url_for('newCategory') }}" class="btn btn-primary btn-xs">
+         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Add Category
+      </a>
+    </p>
+  {% endif %}
+
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-12">
+          <a href="{{ url_for('showCatalog') }}" class="list_item">All Categories</a>
+        </div>
+      </div>
+    </li>
+
+    {% for cat in categories %}
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-12">
+            <a href="{{ url_for('showCategoryItems', category_name=cat.name) }}" class="list_item">{{ cat.name }}</a>
+            {% if cat.user_id == session.user_id %}
+            <div class="pull-right">
+              <a href="{{ url_for('editCategory', category_name=cat.name) }}" class="btn btn-default btn-xs edit">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 
+              </a>
+              <a href="{{ url_for('deleteCategory', category_name=cat.name) }}" class="btn btn-danger btn-xs delete">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+    </ul>
+</div>

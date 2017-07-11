@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "flash_alert.html" %}
+{% include "categories.html" %}
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			{% if quantity != 1 %}
+				<h2>{{ category.name }} Items ({{ quantity }} items)
+			{% else %}
+				<h2>{{ category.name }} Items ({{ quantity }} item)
+			{% endif %}
+			
+			{% if session.user_id %}
+				</h2>
+				<p>
+					<a href = "{{ url_for('newItem') }}">
+						<button class="btn btn-primary btn-xs primary">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+								Add Item
+						</button>
+					</a>
+				</p>
+			{% endif %}
+		</div>
+	</div>
+	{% include "category_item_list.html" %}
+</div>
+{% endblock %}

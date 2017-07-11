@@ -1,0 +1,32 @@
+<ul class="list-group">
+	{% if items and quantity > 0 %}
+	    {% for i in items %}
+	    <li class="list-group-item">
+			<div class="row">
+				<div class="col-md-12">
+					<span class="name">
+						<a href="{{ url_for('showItem', category_name=i.category.name, item_name=i.name) }}" class="list_item" >
+							{{i.name}}</a> <span class="item_category_name">({{ i.category.name }})</span>
+							{% if i.user_id == session.user_id %}
+							<div class="pull-right">
+								<a href="{{ url_for('editItem', item_name=i.name) }}" class="btn btn-default btn-xs edit">
+									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+								</a>
+								<a href="{{ url_for('deleteItem', item_name=i.name) }}" class="btn btn-danger btn-xs delete">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</a>
+							</div>
+							{% endif %}
+					</span>
+				</div>
+			</div>
+	    </li>
+	    {% endfor %}
+	{% else %}
+	<ul>
+	    <li class="list-group-item">
+	        No items to display
+	    </li>
+	</ul>
+	{% endif %}
+</ul>

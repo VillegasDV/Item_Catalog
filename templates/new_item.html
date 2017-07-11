@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% block content %}
+<h2>New Item</h2>
+<form method="post">
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input type ="text" maxlength="50" class="form-control" name="name" placeholder="Item Name" autofocus>
+	</div>
+	<div class="form-group">
+		<label for="description">Description</label>
+		<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder=Item Description"></textarea>
+	</div>
+	<div class="form-group">
+		<label for="price">Price</label>
+		<input type ="text" class="form-control" maxlength="10" name="price" placeholder="Item Price">
+	</div>
+	<div class="form-group">
+	    <label for="Category">Category:</label>
+	    <select class="form-control" name="category">
+	        {% for c in categories %}
+	            {% if item and item.category_id == c.id %} 
+	            <option id="{{c.id}}" value="{{c.id}}" selected>{{c.name}}</option>
+	            {% else %}
+	            <option id="{{c.id}}" value="{{c.id}}">{{c.name}}</option>
+	            {% endif %}
+	        {% endfor %}
+	    </select>
+	</div>
+	<div class="form-group">
+		<button type="submit" class="btn btn-primary" id="submit" type="submit">
+		<span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</button>
+		<a href = "{{ request.referrer }}" class="btn btn-default delete">
+		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
+		Cancel
+		</a>
+	</div>
+</form>
+{% endblock %}
