@@ -351,8 +351,9 @@ def editCategory(category_name):
     # Check if current logged in user is the owner of the category,
     # if not, return error message
     if editedCategory.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert"
-        + "('You are not authorized!')}</script><body onload='myFunction()'>"
+        return "<script>function myFunction() " \
+            "{alert('You are not authorized!')}" \
+            "</script><body onload='myFunction()'>"
 
     # Update category
     if request.method == 'POST':
@@ -379,8 +380,9 @@ def deleteCategory(category_name):
     # Check if current logged in user is the owner of the category,
     # if not, return error message
     if categoryToDelete.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert"
-        + "('You are not authorized!')}</script><body onload='myFunction()'>"
+        return "<script>function myFunction() " \
+            "{alert('You are not authorized!')}" \
+            "</script><body onload='myFunction()'>"
 
     # Delete category
     if request.method == 'POST':
@@ -484,8 +486,9 @@ def editItem(item_name):
     # Check if currently logged in user is item owner,
     # if not, return error message
     if editedItem.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert"
-        + "('You are not authorized!')}</script><body onload='myFunction()'>"
+        return "<script>function myFunction() " \
+            "{alert('You are not authorized!')}" \
+            "</script><body onload='myFunction()'>"
 
     # Perform item update and redirect to catalog page
     if request.method == 'POST':
@@ -520,8 +523,9 @@ def deleteItem(item_name):
     # Check if currently logged in user is item owner,
     # if not, return error message
     if itemToDelete.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert"
-        + "('You are not authorized!')}</script><body onload='myFunction()'>"
+        return "<script>function myFunction() " \
+            "{alert('You are not authorized!')}" \
+            "</script><body onload='myFunction()'>"
 
     # Perform item update and redirect to catalog page
     if request.method == 'POST':
